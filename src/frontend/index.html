@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitOps Two-Tier App</title>
+    <style>body { font-family: sans-serif; padding: 2rem; }</style>
+</head>
+<body>
+    <h1>Frontend Tier (Nginx)</h1>
+    <p>Backend says: <strong id="backend-response" style="color: blue;">Loading...</strong></p>
+
+    <script>
+        // Calls the Nginx /api/ endpoint, which proxies to Node.js
+        fetch('/api/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('backend-response').innerText = data.message;
+            })
+            .catch(error => {
+                document.getElementById('backend-response').innerText = "Failed to connect to backend.";
+                document.getElementById('backend-response').style.color = "red";
+            });
+    </script>
+</body>
+</html>
