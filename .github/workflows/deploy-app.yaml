@@ -73,8 +73,8 @@ jobs:
           
           # Push versioned audit tag
           oras push registry-1.docker.io/${{ secrets.DOCKER_USERNAME }}/app-manifests:${{ env.SHA_TAG }} \
-            /tmp/app-manifests.tar.gz:application/vnd.oci.image.layer.v1.tar+gzip
+            /tmp/app-manifests.tar.gz:application/vnd.oci.image.layer.v1.tar+gzip --disable-path-validation
           
           # Push 'latest' tag for Argo CD sync
           oras push registry-1.docker.io/${{ secrets.DOCKER_USERNAME }}/app-manifests:latest \
-            /tmp/app-manifests.tar.gz:application/vnd.oci.image.layer.v1.tar+gzip
+            /tmp/app-manifests.tar.gz:application/vnd.oci.image.layer.v1.tar+gzip --disable-path-validation
